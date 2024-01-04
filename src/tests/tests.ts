@@ -76,7 +76,7 @@ describe("Rules", () => {
     ];
 
     for (const [word, expected] of words) {
-      let actual = rules.convert(word);
+      let actual = rules.convertToStr(word);
       actual = actual.replace(/[/\s]+/g, " ").trim();
       assert.equal(actual, expected);
     }

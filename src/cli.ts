@@ -1,6 +1,7 @@
 import { program } from "@commander-js/extra-typings";
 import { version } from "../package.json";
 import { Ruleset } from "./ruleset";
+import { pnmToXsampa, xsampaIpaMap, xsampaToIpa } from "./converters";
 
 async function main() {
   program.version(version);
@@ -21,12 +22,13 @@ async function main() {
 
       await ruleset.loadFromDir(rulesPath!);
 
-      console.log(
-        ruleset
-          .convert(input.toUpperCase())
-          .replace(/[/\s]+/g, " ")
-          .trim()
-      );
+      let results = ruleset.convert(input.toUpperCase());
+
+      let xsampa = pnmToXsampa(results);
+      let ipa = xsampaToIpa(xsampa);
+
+      console.log(`X-SAMPA: ${xsampa}`);
+      console.log(`IPA: /${ipa}/`);
     });
   await program.parseAsync(process.argv);
 }

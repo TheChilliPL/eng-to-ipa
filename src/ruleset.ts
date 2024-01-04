@@ -3,6 +3,12 @@ import * as path from "path";
 import { Rule } from "./rule";
 import { combineRegexes, escapeRegex } from "./regex";
 
+export interface ConversionResult {
+  input: string;
+  output: string;
+  rule?: Rule;
+}
+
 export class Ruleset {
   constructor() {
     // console.debug("Ruleset created");
@@ -94,21 +100,34 @@ export class Ruleset {
     return null;
   }
 
-  convert(str: string): string {
-    let result = "";
+  convert(str: string): ConversionResult[] {
+    let result: ConversionResult[] = [];
     let strIndex = 0;
     while (strIndex < str.length) {
       let match = this.match(str, strIndex);
       if (match) {
         let [rule, matchLength] = match;
-        result += rule.phoneme;
+        result.push({
+          input: str.slice(strIndex, strIndex + matchLength),
+          output: rule.phoneme,
+          rule: rule,
+        });
         strIndex += matchLength;
       } else {
-        result += str[strIndex];
+        result.push({
+          input: str[strIndex],
+          output: str[strIndex],
+        });
         strIndex++;
       }
     }
     return result;
+  }
+
+  convertToStr(str: string): string {
+    return this.convert(str)
+      .map((result) => result.output)
+      .join("");
   }
 
   async addDefaultSymbols() {
