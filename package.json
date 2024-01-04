@@ -1,0 +1,20 @@
+{
+  "name": "eng-to-ipa",
+  "description": "Convert English text to IPA phonemic transcription by Letter-to-Sound Rules",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "npx tsx src/cli.ts",
+    "debug": "npx tsx --inspect-brk src/cli.ts",
+    "test": "globstar -- node --no-warnings --loader tsx \"src/tests/**/*.ts\""
+  },
+  "devDependencies": {
+    "@commander-js/extra-typings": "^11.1.0",
+    "@types/node": "^20.10.6",
+    "commander": "^11.1.0",
+    "globstar": "^1.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}

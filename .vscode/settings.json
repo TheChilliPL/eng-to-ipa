@@ -1,0 +1,7 @@
+{
+  "[plaintext]": {
+    "editor.autoIndent": "none",
+    "editor.renderWhitespace": "all",
+    "editor.wordBasedSuggestions": "off"
+  }
+}

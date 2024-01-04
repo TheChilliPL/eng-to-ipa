@@ -1,0 +1,11 @@
+[YOUNG]=/Y AH NX/
+ [YOU]=/Y UW/
+ [YES]=/Y EH S/
+ [Y]=/Y/
+#^:[Y] =/IY/
+#^:[Y]I=/IY/
+ :[Y] =/AY/
+ :[Y]#=/AY/
+ :[Y]^+:#=/IH/
+ :[Y]^#=/AY/
+[Y]=/IH/
